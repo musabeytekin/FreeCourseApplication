@@ -80,7 +80,7 @@ namespace FreeCourse.Services.Catalog.Services
             return Response<List<CourseDto>>.Success(_mapper.Map<List<CourseDto>>(courses), 200);
         }
 
-        public async Task<Response<CourseDto>> CreateCourse(CourseCreateDto course)
+        public async Task<Response<CourseDto>> CreateCourseAsync(CourseCreateDto course)
         {
             var newCourse = _mapper.Map<Course>(course);
 
@@ -92,7 +92,7 @@ namespace FreeCourse.Services.Catalog.Services
 
         }
 
-        public async Task<Response<NoContent>> UpdateCourse(CourseUpdateDto course)
+        public async Task<Response<NoContent>> UpdateCourseAsync(CourseUpdateDto course)
         {
             var updateCourse = _mapper.Map<Course>(course);
 
@@ -107,7 +107,7 @@ namespace FreeCourse.Services.Catalog.Services
            
         }
 
-        public async Task<Response<NoContent>> DeleteCourse(string id)
+        public async Task<Response<NoContent>> DeleteCourseAsync(string id)
         {
             var result = await _courseCollection.DeleteOneAsync(course => course.Id == id);
 

@@ -19,11 +19,13 @@
     <None Remove="Models\" />
     <None Remove="DTOs\" />
     <None Remove="Mapping\" />
+    <None Remove="Settings\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
     <Folder Include="DTOs\" />
     <Folder Include="Mapping\" />
+    <Folder Include="Settings\" />
   </ItemGroup>
 </Project>

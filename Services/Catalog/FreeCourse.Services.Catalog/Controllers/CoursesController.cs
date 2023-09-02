@@ -30,13 +30,13 @@ namespace FreeCourse.Services.Catalog.Controllers
             return CreateActionResultInstance(response);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetByUserId([FromQuery] string userId)
-        {
-            var response = await _courseService.GetAllByUserIdAsync(userId);
+        //[HttpGet]
+        //public async Task<IActionResult> GetByUserId([FromQuery] string userId)
+        //{
+        //    var response = await _courseService.GetAllByUserIdAsync(userId);
 
-            return CreateActionResultInstance(response);
-        }
+        //    return CreateActionResultInstance(response);
+        //}
 
         [HttpGet]
         public async Task<IActionResult> GetAll()

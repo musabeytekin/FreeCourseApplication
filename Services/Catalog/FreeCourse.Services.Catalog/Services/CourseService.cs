@@ -4,7 +4,6 @@ using FreeCourse.Services.Catalog.DTOs;
 using FreeCourse.Services.Catalog.Models;
 using FreeCourse.Services.Catalog.Settings;
 using FreeCourse.Shared.DTOs;
-using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace FreeCourse.Services.Catalog.Services
@@ -28,7 +27,7 @@ namespace FreeCourse.Services.Catalog.Services
 
         public async Task<Response<List<CourseDto>>> GetAllAsync()
         {
-            var courses = await _courseCollection.Find(course => true).ToListAsync();
+            var courses = await _courseCollection.Find<Course>(course => true).ToListAsync();
 
             if(courses.Any())
             {
@@ -50,7 +49,7 @@ namespace FreeCourse.Services.Catalog.Services
         {
             var course = await _courseCollection.Find<Course>(course => course.Id == id).FirstAsync();
 
-            if(course is not null)
+            if(course is null)
             {
                 return Response<CourseDto>.Fail($"Course id ({id}) not found", 404);
             }
@@ -103,7 +102,7 @@ namespace FreeCourse.Services.Catalog.Services
                 return Response<NoContent>.Fail("Course not found", 404);
             }
 
-            return Response<NoContent>.Success(200);
+            return Response<NoContent>.Success(204);
            
         }
 

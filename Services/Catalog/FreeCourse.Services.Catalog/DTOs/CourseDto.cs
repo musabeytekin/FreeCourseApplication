@@ -1,4 +1,4 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using FreeCourse.Services.Catalog.Models;
 
 namespace FreeCourse.Services.Catalog.DTOs
 {
@@ -23,7 +23,6 @@ namespace FreeCourse.Services.Catalog.DTOs
 
         public string CategoryId { get; set; }
 
-        [BsonIgnore]
         public CategoryDto Category { get; set; }
     }
 }

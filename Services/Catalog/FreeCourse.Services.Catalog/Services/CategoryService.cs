@@ -29,8 +29,13 @@ namespace FreeCourse.Services.Catalog.Services
             return Response<List<CategoryDto>>.Success(_mapper.Map<List<CategoryDto>>(categories), 200);
         }
 
-        public async Task<Response<CategoryDto>> CreateCategory(Category category)
+        public async Task<Response<CategoryDto>> CreateCategoryAsync(CategoryDto categoryDto)
         {
+            //await _categoryCollection.InsertOneAsync(_mapper.Map<Category>(category));
+
+            //return Response<CategoryDto>.Success(category, 201);
+
+            var category = _mapper.Map<Category>(categoryDto);
             await _categoryCollection.InsertOneAsync(category);
 
             return Response<CategoryDto>.Success(_mapper.Map<CategoryDto>(category), 201);
@@ -39,9 +44,9 @@ namespace FreeCourse.Services.Catalog.Services
 
         public async Task<Response<CategoryDto>> GetByIdAsync(string id)
         {
-            var category = await _categoryCollection.Find<Category>(category => category.Id == id).ToListAsync();
+            var category = await _categoryCollection.Find<Category>(category => category.Id == id).FirstOrDefaultAsync();
 
-            if (category == null)
+            if (category is null)
                 return Response<CategoryDto>.Fail($"Category ({id}) not found", 404);
 
             return Response<CategoryDto>.Success(_mapper.Map<CategoryDto>(category), 200);

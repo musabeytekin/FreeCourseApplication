@@ -5,17 +5,16 @@ using System.Threading.Tasks;
 using FreeCourse.IdentityServer.DTOs;
 using FreeCourse.IdentityServer.Models;
 using FreeCourse.Shared.DTOs;
+using IdentityServer4;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace FreeCourse.IdentityServer.Controllers
 {
-    [Route("api/[controller]")]
+    [Authorize(IdentityServerConstants.LocalApi.PolicyName)]    
+    [Route("api/[controller]/[action]")]
     [ApiController]
-
-       
     public class UserController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;

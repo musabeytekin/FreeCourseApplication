@@ -1,13 +1,13 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace FreeCourse.IdentityServer.DTOs
 {
-	public class SignupDto
-	{
-		public string UserName { get; set; }
-		public string Email { get; set; }
-		public string Password { get; set; }
-		public string City { get; set; }
-
-	}
+    public class SignupDto
+    {
+        [Required] public string UserName { get; set; }
+        [Required] public string Email { get; set; }
+        [Required] public string Password { get; set; }
+        public string City { get; set; }
+    }
 }
-

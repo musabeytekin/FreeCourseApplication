@@ -22,6 +22,11 @@
     <Folder Include="wwwroot\Photos\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Shared\FreeCourse.Shared\FreeCourse.Shared.csproj" />
+    
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\FreeCourse.Shared\FreeCourse.Shared.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 </Project>

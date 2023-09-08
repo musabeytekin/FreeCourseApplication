@@ -3,5 +3,5 @@ create table Discounts(
 	UserId varchar(100) unique not null,
 	Rate smallint not null,
 	Code varchar(30) not null,
-	CreatedDate timestamp not null default CURRENT_TIMESTAMP
+	CreatedTime timestamp not null default CURRENT_TIMESTAMP
 ) 

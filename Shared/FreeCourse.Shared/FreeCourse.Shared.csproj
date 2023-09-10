@@ -9,7 +9,6 @@
     <None Remove="ControllerBases\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DTOs\" />
     <Folder Include="ControllerBases\" />
   </ItemGroup>
   <ItemGroup>

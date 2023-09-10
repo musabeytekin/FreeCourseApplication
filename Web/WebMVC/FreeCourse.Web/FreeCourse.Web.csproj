@@ -10,9 +10,13 @@
   <ItemGroup>
     <None Remove="Services\" />
     <None Remove="Services\Interfaces\" />
+    <None Remove="Views\Auth\" />
+    <None Remove="Pages\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\Interfaces\" />
+    <Folder Include="Views\Auth\" />
+    <Folder Include="Pages\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\FreeCourse.Shared\FreeCourse.Shared.csproj">

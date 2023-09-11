@@ -10,6 +10,7 @@ var serviceApiSettings = builder.Configuration.GetSection("ServiceApiSettings").
 // Add services to the container.
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddHttpClient<IIdentityService, IdentityService>();
+builder.Services.AddScoped<ResourceOwnerPasswordTokenHandler>();
 builder.Services.AddHttpClient<IUserService, UserService>(opt =>
 {
     opt.BaseAddress = new Uri(serviceApiSettings!.IdentityBaseUri);

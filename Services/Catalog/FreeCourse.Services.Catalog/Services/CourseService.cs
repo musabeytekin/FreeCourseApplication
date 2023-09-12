@@ -47,7 +47,7 @@ namespace FreeCourse.Services.Catalog.Services
 
         public async Task<Response<CourseDto>> GetByIdAsync(string id)
         {
-            var course = await _courseCollection.Find<Course>(course => course.Id == id).FirstAsync();
+            var course = await _courseCollection.Find<Course>(course => course.Id == id).FirstOrDefaultAsync();
 
             if(course is null)
             {

@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using FreeCourse.Services.Catalog.DTOs;
 using FreeCourse.Services.Catalog.Services;
 using FreeCourse.Shared.ControllerBases;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FreeCourse.Services.Catalog.Controllers
@@ -30,13 +25,14 @@ namespace FreeCourse.Services.Catalog.Controllers
             return CreateActionResultInstance(response);
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> GetByUserId([FromQuery] string userId)
-        //{
-        //    var response = await _courseService.GetAllByUserIdAsync(userId);
+        [Route("/api/[controller]/user/{userId}")]
+        [HttpGet]
+        public async Task<IActionResult> GetByUserId(string userId)
+        {
+            var response = await _courseService.GetAllByUserIdAsync(userId);
 
-        //    return CreateActionResultInstance(response);
-        //}
+            return CreateActionResultInstance(response);
+        }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
@@ -45,7 +41,7 @@ namespace FreeCourse.Services.Catalog.Controllers
 
             return CreateActionResultInstance(response);
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> Create(CourseCreateDto courseCreateDto)
         {
@@ -61,7 +57,7 @@ namespace FreeCourse.Services.Catalog.Controllers
 
             return CreateActionResultInstance(response);
         }
-     
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
@@ -69,7 +65,5 @@ namespace FreeCourse.Services.Catalog.Controllers
 
             return CreateActionResultInstance(response);
         }
-        
-        
     }
 }

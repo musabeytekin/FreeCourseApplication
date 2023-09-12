@@ -1,4 +1,5 @@
-﻿using FreeCourse.Services.Catalog.Services;
+﻿using System.Reflection;
+using FreeCourse.Services.Catalog.Services;
 using FreeCourse.Services.Catalog.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc.Authorization;
@@ -14,8 +15,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     options.RequireHttpsMetadata = false;
 });
 
-builder.Services.AddAutoMapper(typeof(Program));
-builder.Services.AddControllers(opt => {
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+builder.Services.AddControllers(opt =>
+{
     opt.Filters.Add(new AuthorizeFilter());
 });
 

@@ -72,11 +72,13 @@ namespace FreeCourse.IdentityServer
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                     AllowedScopes =
                     {
-                        "gateway_fullpermission",
                         "basket_fullpermission",
                         "discount_fullpermission",
                         "order_fullpermission",
                         "payment_fullpermission",
+                        "catalog_fullpermission",
+                        "photo_stock_fullpermission",
+                        "gateway_fullpermission",
                         IdentityServerConstants.StandardScopes.Email,
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,

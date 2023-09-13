@@ -8,6 +8,7 @@ public class ServiceApiSettings
     public string PhotoStockUri { get; set; }
 
     public ServiceApi Catalog { get; set; }
+    public ServiceApi PhotoStock { get; set; }
 }
 
 public class ServiceApi

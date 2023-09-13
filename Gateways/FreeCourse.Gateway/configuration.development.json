@@ -41,7 +41,7 @@
       "UpstreamScheme": "http",
         "AuthenticationOptions": {
             "AuthenticationProviderKey": "GatewayAuthenticationScheme",
-            "AllowedScopes": ["photostock_fullpermission"]
+            "AllowedScopes": ["photo_stock_fullpermission"]
         }
     }, 
     {

@@ -12,7 +12,6 @@
                 <h5 class="card-title">Add Course</h5>
                 <form asp-controller="Courses" asp-action="Create" method="post" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly"></div>
-                    <input type="hidden" asp-for="Picture" value="Not Yet"/>
                     <div class="mb-3">
                         <label asp-for="CategoryId" class="form-label"></label>
                         <select asp-for="CategoryId" asp-items="@ViewBag.Categories" class="form-control">
@@ -43,8 +42,14 @@
                         <span asp-validation-for="Feature.Duration" class="text-danger"></span>
                     </div>
 
+                    <div class="mb-3">
+                        <label asp-for="PhotoFormFile" class="form-label"></label>
+                        <input type="file" asp-for="PhotoFormFile" class="form-control">
+                    </div>
+
+
                     <button type="submit" class="btn btn-primary">Add Course</button>
-                    
+
                 </form>
             </div>
         </div>

@@ -1,9 +1,14 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace FreeCourse.Web.Models.Catalog;
 
 public class CourseUpdateInput
 {
+    
+    [Required]
     public string Id { get; set; }
 
+    [Required]
     public string Name { get; set; }
 
     public string Description { get; set; }
@@ -17,4 +22,6 @@ public class CourseUpdateInput
     public FeatureViewModel Feature { get; set; }
 
     public string CategoryId { get; set; }
+
+    public IFormFile PhotoFormFile { get; set; }
 }

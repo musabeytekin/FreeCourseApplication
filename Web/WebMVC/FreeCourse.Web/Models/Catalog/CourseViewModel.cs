@@ -14,6 +14,8 @@ public class CourseViewModel
 
     public string Picture { get; set; }
 
+    public string StockPictureUrl { get; set; }
+
     public DateTime CreatedTime { get; set; }
 
     public FeatureViewModel Feature { get; set; }

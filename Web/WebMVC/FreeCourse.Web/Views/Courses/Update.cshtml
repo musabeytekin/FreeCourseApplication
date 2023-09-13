@@ -1,4 +1,4 @@
-﻿@model CourseCreateInput
+﻿@model CourseUpdateInput
 
 @{
     ViewBag.Title = "title";
@@ -9,9 +9,11 @@
     <div class="col-md-8 offset-md-2">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Add Course</h5>
-                <form asp-controller="Courses" asp-action="Create" method="post" enctype="multipart/form-data">
+                <h5 class="card-title">Update Course</h5>
+                <form asp-controller="Courses" asp-action="Update" method="post" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="UserId" />
                     <input type="hidden" asp-for="Picture" value="Not Yet"/>
                     <div class="mb-3">
                         <label asp-for="CategoryId" class="form-label"></label>
@@ -43,7 +45,7 @@
                         <span asp-validation-for="Feature.Duration" class="text-danger"></span>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Add Course</button>
+                    <button type="submit" class="btn btn-primary">Update Course</button>
                     
                 </form>
             </div>

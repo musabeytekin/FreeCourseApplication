@@ -31,10 +31,10 @@ public class CatalogService : ICatalogService
     public async Task<List<CourseViewModel>> GetAllCourseByUserIdAsync(string userId)
     {
         var address = _httpClient.BaseAddress.ToString();
-        var response = await _httpClient.GetAsync($"courses/user/{userId}"); 
+        var response = await _httpClient.GetAsync($"courses/user/{userId}");
         //http://localhost:5000/services/catalog/courses/user/1
         //http://localhost:5011/api/courses/user/userid
-                        
+
 
         if (!response.IsSuccessStatusCode)
         {
@@ -48,7 +48,7 @@ public class CatalogService : ICatalogService
 
     public async Task<CourseViewModel> GetByCourseId(string courseId)
     {
-        var response = await _httpClient.GetAsync($"/courses/{courseId}");
+        var response = await _httpClient.GetAsync($"courses/{courseId}");
 
         if (!response.IsSuccessStatusCode)
         {
@@ -60,35 +60,35 @@ public class CatalogService : ICatalogService
         return responseSuccess.Data;
     }
 
-    public async Task<CategoryViewModel> GetAllCategoryAsync()
+    public async Task<List<CategoryViewModel>> GetAllCategoryAsync()
     {
-        var response = await _httpClient.GetAsync("/categories");
+        var response = await _httpClient.GetAsync("categories");
 
         if (!response.IsSuccessStatusCode)
         {
-            return new CategoryViewModel();
+            return new List<CategoryViewModel>();
         }
 
-        var responseSuccess = await response.Content.ReadFromJsonAsync<Response<CategoryViewModel>>();
+        var responseSuccess = await response.Content.ReadFromJsonAsync<Response<List<CategoryViewModel>>>();
 
         return responseSuccess.Data;
     }
 
     public async Task<bool> DeleteCourseAsync(string courseId)
     {
-        var response = await _httpClient.DeleteAsync($"/courses/{courseId}");
+        var response = await _httpClient.DeleteAsync($"courses/{courseId}");
         return response.IsSuccessStatusCode;
     }
 
     public async Task<bool> UpdateCourseAsync(CourseUpdateInput courseUpdateInput)
     {
-        var response = await _httpClient.PutAsJsonAsync<CourseUpdateInput>("/courses", courseUpdateInput);
+        var response = await _httpClient.PutAsJsonAsync<CourseUpdateInput>("courses", courseUpdateInput);
         return response.IsSuccessStatusCode;
     }
 
     public async Task<bool> CreateCourseAsync(CourseCreateInput courseCreateInput)
     {
-        var response = await _httpClient.PostAsJsonAsync<CourseCreateInput>("/courses", courseCreateInput);
+        var response = await _httpClient.PostAsJsonAsync<CourseCreateInput>("courses", courseCreateInput);
         return response.IsSuccessStatusCode;
     }
 }

@@ -50,7 +50,7 @@ public class CoursesController : Controller
 
         return RedirectToAction(nameof(Index));
     }
-    
+
 
     public async Task<IActionResult> Update(string id)
     {
@@ -61,9 +61,9 @@ public class CoursesController : Controller
         {
             RedirectToAction(nameof(Index));
         }
-        
+
         ViewBag.Categories = new SelectList(categories, "Id", "Name", course!.Id);
-        
+
         CourseUpdateInput courseUpdateInput = new()
         {
             Id = course.Id,
@@ -78,7 +78,7 @@ public class CoursesController : Controller
 
         return View(courseUpdateInput);
     }
-    
+
     [HttpPost]
     public async Task<IActionResult> Update(CourseUpdateInput input)
     {
@@ -95,6 +95,11 @@ public class CoursesController : Controller
 
         return RedirectToAction(nameof(Index));
     }
-    
-    
+
+    public async Task<IActionResult> Delete(string id)
+    {
+        var result = await _catalogService.DeleteCourseAsync(id);
+
+        return RedirectToAction(nameof(Index));
+    }
 }

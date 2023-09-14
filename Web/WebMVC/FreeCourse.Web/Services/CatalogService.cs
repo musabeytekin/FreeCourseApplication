@@ -49,7 +49,6 @@ public class CatalogService : ICatalogService
 
         var responseSuccess = await response.Content.ReadFromJsonAsync<Response<List<CourseViewModel>>>();
 
-
         responseSuccess.Data.ForEach(x => { x.StockPictureUrl = _photoHelper.GetPhotoStockUrl(x.Picture); });
         return responseSuccess.Data;
     }

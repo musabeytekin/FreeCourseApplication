@@ -8,6 +8,19 @@ public class CourseViewModel
 
     public string Description { get; set; }
 
+    public string ShortDescription
+    {
+        get
+        {
+            if (Description.Length > 100)
+            {
+                return Description.Substring(0, 100) + "...";
+            }
+
+            return Description;
+        }
+    }
+
     public decimal Price { get; set; }
 
     public string UserId { get; set; }

@@ -1,26 +1,24 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using FreeCourse.Web.Models;
+using FreeCourse.Web.Services.Interfaces;
 
 namespace FreeCourse.Web.Controllers;
 
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    private readonly ICatalogService _catalogService;
+    
+    public HomeController(ILogger<HomeController> logger, ICatalogService catalogService)
     {
         _logger = logger;
+        _catalogService = catalogService;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        return View();
-    }
-
-    public IActionResult Privacy()
-    {
-        return View();
+        return View(await _catalogService.GetAllCourseAsync());
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -21,7 +21,6 @@ public class BasketsController : CustomControllerBase
     [HttpGet]
     public async Task<IActionResult> GetBasket()
     {
-        Console.WriteLine("*************************" + _sharedIdentityService.GetUserId);
         return CreateActionResultInstance(await _basketService.GetBasket(_sharedIdentityService.GetUserId));
     }
 

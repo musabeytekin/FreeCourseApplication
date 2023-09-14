@@ -1,3 +1,4 @@
+using FreeCourse.Shared.DTOs;
 using FreeCourse.Web.Models.Basket;
 using FreeCourse.Web.Services.Interfaces;
 
@@ -24,9 +25,13 @@ public class BasketService : IBasketService
         var response = await _httpClient.GetAsync("baskets");
 
         if (!response.IsSuccessStatusCode)
+        {
             return null;
+        }
+        var basketViewModel = await response.Content.ReadFromJsonAsync<Response<BasketViewModel>>();
 
-        return await response.Content.ReadFromJsonAsync<BasketViewModel>();
+        return basketViewModel.Data;
+
     }
 
     public async Task<bool> Delete()
@@ -42,7 +47,7 @@ public class BasketService : IBasketService
 
         if (basket is not null)
         {
-            if (basket.BasketItems.All(basketItem => basketItem.CourseId != basketItemViewModel.CourseId))
+            if (basket.BasketItems.Any(basketItem => basketItem.CourseId != basketItemViewModel.CourseId))
             {
                 basket.BasketItems.Add(basketItemViewModel);
             }
@@ -74,12 +79,20 @@ public class BasketService : IBasketService
         if (deleteItem is null)
             return false;
 
-        var response = await _httpClient.DeleteAsync($"baskets/items/{deleteItem.CourseId}");
+        var deleteResult = basket.BasketItems.Remove(deleteItem);
+
+        if (!deleteResult)
+        {
+            return false;
+        }
 
         if (!basket.BasketItems.Any())
+        {
             basket.DiscountCode = null;
+        }
 
-        return await SaveOrUpdate(basket)
+        return await SaveOrUpdate(basket);
+
     }
 
     public async Task<bool> ApplyDiscount(string discountCode)

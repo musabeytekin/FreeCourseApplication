@@ -1,6 +1,7 @@
 using System.Text.Json;
 using FreeCourse.Services.Basket.DTOs;
 using FreeCourse.Shared.DTOs;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FreeCourse.Services.Basket.Services;
 
@@ -16,7 +17,7 @@ public class BasketService : IBasketService
     public async Task<Response<BasketDto>> GetBasket(string userId)
     {
         var basket = await _redisService.GetDb().StringGetAsync(userId);
-        if (String.IsNullOrEmpty(basket))
+        if (string.IsNullOrEmpty(basket))
         {
             return Response<BasketDto>.Fail("Basket not found", 404);
         }

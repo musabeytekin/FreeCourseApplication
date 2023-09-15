@@ -4,11 +4,9 @@ namespace FreeCourse.Web.Models.Catalog;
 
 public class CourseCreateInput
 {
-    [Required]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
-    [Required]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     public decimal Price { get; set; }
 
@@ -20,7 +18,7 @@ public class CourseCreateInput
 
     public string? CategoryId { get; set; }
 
-    public IFormFile PhotoFormFile { get; set; }
+    public IFormFile? PhotoFormFile { get; set; }
     
     
 }

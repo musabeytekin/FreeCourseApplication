@@ -38,7 +38,7 @@ public class DiscountService : IDiscountService
     public async Task<Response<NoContent>> Save(Models.Discount discount)
     {
         var saveStatus = await _dbConnection.ExecuteAsync(
-            "INSERT INTO discounts (UserId,Rate,Code,CreatedTime) VALUES (@UserId,@Rate,@Code,@CreatedTime)",
+            "INSERT INTO discounts (UserId,Rate,Code) VALUES (@UserId,@Rate,@Code)",
             discount);
         if (saveStatus > 0)
         {
@@ -51,7 +51,7 @@ public class DiscountService : IDiscountService
     public async Task<Response<NoContent>> Update(Models.Discount discount)
     {
         var updateStatus = await _dbConnection.ExecuteAsync(
-            "UPDATE discounts SET UserId=@UserId,Rate=@Rate,Code=@Code,CreatedTime=@CreatedTime WHERE Id=@Id",
+            "UPDATE discounts SET UserId=@UserId,Rate=@Rate,Code=@Code WHERE Id=@Id",
             discount);
         if (updateStatus > 0)
         {

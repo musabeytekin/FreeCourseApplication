@@ -2,9 +2,9 @@ namespace FreeCourse.Services.Basket.DTOs;
 
 public class BasketDto
 {
-    public string UserId { get; set; }
+    public string? UserId { get; set; }
     public string? DiscountCode { get; set; }
-    public string? DiscountRate { get; set; }
+    public int? DiscountRate { get; set; }
     public List<BasketItemDto>? BasketItems { get; set; }
 
     public decimal TotalPrice

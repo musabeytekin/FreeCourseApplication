@@ -70,7 +70,7 @@ public class IdentityService : IIdentityService
         if (userInfo.IsError)
             throw userInfo.Exception!;
 
-        ClaimsIdentity claimsIdentity = new ClaimsIdentity(userInfo.Claims,
+        var claimsIdentity = new ClaimsIdentity(userInfo.Claims,
             CookieAuthenticationDefaults.AuthenticationScheme, "name",
             "role"); // kullanıcı adı name claiminden okunacak rollerde role claiminden okunacak
 
@@ -129,7 +129,7 @@ public class IdentityService : IIdentityService
         var token = await _httpClient.RequestRefreshTokenAsync(refreshTokenRequest);
 
         if (token.IsError)
-            throw token.Exception!;
+            return null;
 
         var authenticationTokens = new List<AuthenticationToken>()
         {

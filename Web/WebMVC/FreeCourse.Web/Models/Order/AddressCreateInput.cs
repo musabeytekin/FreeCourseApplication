@@ -1,6 +1,6 @@
-namespace FreeCourse.Services.Order.Application.DTOs;
+namespace FreeCourse.Web.Models.Order;
 
-public class AddressDto
+public class AddressCreateInput
 {
     public string? Province { get; set; }
     public string? District { get; set; }

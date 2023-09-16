@@ -18,14 +18,14 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Res
 
     public async Task<Response<CreatedOrderDto>> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
     {
-        var newAddress = new Address(request.AddressDto.Province, request.AddressDto.District,
-            request.AddressDto.Street, request.AddressDto.ZipCode, request.AddressDto.Line);
+        var newAddress = new Address(request.Address.Province, request.Address.District,
+            request.Address.Street, request.Address.ZipCode, request.Address.Line);
         var newOrder = new Domain.OrderAggregate.Order(newAddress, request.BuyerId);
 
         request.OrderItems.ForEach(x => { newOrder.AddOrderItem(x.ProductId, x.ProductName, x.PictureUrl, x.Price); });
 
         await _context.Orders.AddAsync(newOrder);
         await _context.SaveChangesAsync();
-        return Shared.DTOs.Response<CreatedOrderDto>.Success(new CreatedOrderDto { OrderId = newOrder.Id }, 201);
+        return Response<CreatedOrderDto>.Success(new CreatedOrderDto { OrderId = newOrder.Id }, 201);
     }
 }

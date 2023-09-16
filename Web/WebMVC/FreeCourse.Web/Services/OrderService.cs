@@ -66,10 +66,10 @@ public class OrderService : IOrderService
         if (!response.IsSuccessStatusCode)
             return new OrderCreatedViewModel(){Error = "An Error Occured", IsSuccessful = false};
         
-        var orderCreatedViewModel = await response.Content.ReadFromJsonAsync<OrderCreatedViewModel>();
-        orderCreatedViewModel!.IsSuccessful = true;
+        var orderCreatedViewModel = await response.Content.ReadFromJsonAsync<Response<OrderCreatedViewModel>>();
+        orderCreatedViewModel!.Data.IsSuccessful = true;
         
-        return orderCreatedViewModel;
+        return orderCreatedViewModel.Data;
         
     }
 

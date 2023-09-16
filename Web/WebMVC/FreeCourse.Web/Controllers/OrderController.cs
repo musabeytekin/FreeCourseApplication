@@ -26,7 +26,8 @@ public class OrderController : Controller
     [HttpPost]
     public async Task<IActionResult> Checkout(CheckoutInfoInput checkoutInfoInput)
     {
-        var orderStatus = await _orderService.CreateOrder(checkoutInfoInput);
+        //var orderStatus = await _orderService.CreateOrder(checkoutInfoInput);
+        var orderStatus = await _orderService.SuspendOrder(checkoutInfoInput);
         if (!orderStatus.IsSuccessful)
         {
             var basket = await _basketService.Get();
@@ -35,13 +36,18 @@ public class OrderController : Controller
             return View();
         }
 
-        await _basketService.Delete();
-        return RedirectToAction(nameof(SuccessfullCheckout), new { orderId = orderStatus.OrderId });
+        
+        return RedirectToAction(nameof(SuccessfullCheckout), new { orderId = new Random().Next(1, 1000) }); // this is random for now
     }
-    
+
     public IActionResult SuccessfullCheckout(int orderId)
     {
         ViewBag.OrderId = orderId;
         return View();
+    }
+    
+    public async Task<IActionResult> CheckoutHistory()
+    {
+        return View(await _orderService.GetOrder());
     }
 }

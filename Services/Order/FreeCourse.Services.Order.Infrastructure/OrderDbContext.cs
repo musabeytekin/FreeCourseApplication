@@ -25,6 +25,12 @@ namespace FreeCourse.Services.Order.Infrastructure
 
 			base.OnModelCreating(modelBuilder);
 		}
+
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		{
+			optionsBuilder.LogTo(Console.WriteLine);
+			base.OnConfiguring(optionsBuilder);
+		}
 	}
 }
 

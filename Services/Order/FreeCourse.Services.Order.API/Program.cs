@@ -1,4 +1,5 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
+using FreeCourse.Services.Order.Application.Consumers;
 using FreeCourse.Services.Order.Application.Handlers;
 using FreeCourse.Services.Order.Infrastructure;
 using FreeCourse.Shared.Services;
@@ -7,10 +8,28 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
+using MassTransit;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddMassTransit(configurator =>
+{
+    configurator.AddConsumer<CreateOrderMessageCommandConsumer>();
+    configurator.UsingRabbitMq((context, config) =>
+    {
+        config.Host(builder.Configuration["RabbitMQUrl"], "/", host =>
+        {
+            host.Username("guest");
+            host.Password("guest");
+        });
+        
+        config.ReceiveEndpoint("create-order-service", e =>
+        {
+            e.ConfigureConsumer<CreateOrderMessageCommandConsumer>(context);
+        });
+    });
+});
+
 var requireAuthorizePolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
 JwtSecurityTokenHandler.DefaultInboundClaimTypeMap
     .Remove("sub"); // normalde sub claimini almazdi, bunu kaldiriyoruz, sub claimi user id yi tutuyor, bu satir olmazsa "sub" değil "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier" olarak geliyor

@@ -1,9 +1,23 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
+using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddMassTransit(configurator =>
+{
+   //Port Default 5672
+   configurator.UsingRabbitMq((context, config) =>
+   {
+       config.Host(builder.Configuration["RabbitMQUrl"], "/", host =>
+       {
+           host.Username("guest");
+           host.Password("guest");
+       });
+   });
+});
 
 var requireAuthorizePolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
 JwtSecurityTokenHandler.DefaultInboundClaimTypeMap

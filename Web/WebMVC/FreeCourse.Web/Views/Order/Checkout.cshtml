@@ -57,9 +57,6 @@
                 <div class="card-body">
                     <h5 class="card-title">Summary</h5>
                     <table class="table table-striped">
-                        @{
-                            var items = ViewBag.Basket.BasketItems;
-                        }
                         @foreach (var item in ViewBag.Basket.BasketItems as List<BasketItemViewModel>)
                         {
                             <tr>
@@ -74,7 +71,7 @@
                         </tr>
                     </table>
 
-                    <button type="submit" class="btn btn-success">Ödemeyi tamamla</button>
+                    <button type="submit" class="btn btn-success">Complete Payment</button>
                 </div>
             </div>
         </div>

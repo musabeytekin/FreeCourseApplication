@@ -17,10 +17,12 @@
         "Delete"
       ],
       "UpstreamScheme": "http",
-        "AuthenticationOptions": {
-            "AuthenticationProviderKey": "GatewayAuthenticationScheme",
-            "AllowedScopes": ["catalog_fullpermission"]
-        }
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "GatewayAuthenticationScheme",
+        "AllowedScopes": [
+          "catalog_fullpermission"
+        ]
+      }
     },
     {
       "DownstreamPathTemplate": "/api/{everything}",
@@ -39,11 +41,13 @@
         "Delete"
       ],
       "UpstreamScheme": "http",
-        "AuthenticationOptions": {
-            "AuthenticationProviderKey": "GatewayAuthenticationScheme",
-            "AllowedScopes": ["photo_stock_fullpermission"]
-        }
-    }, 
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "GatewayAuthenticationScheme",
+        "AllowedScopes": [
+          "photo_stock_fullpermission"
+        ]
+      }
+    },
     {
       "DownstreamPathTemplate": "/api/{everything}",
       "DownstreamScheme": "http",
@@ -61,10 +65,12 @@
         "Delete"
       ],
       "UpstreamScheme": "http",
-        "AuthenticationOptions": {
-            "AuthenticationProviderKey": "GatewayAuthenticationScheme",
-            "AllowedScopes": ["basket_fullpermission"]
-        }
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "GatewayAuthenticationScheme",
+        "AllowedScopes": [
+          "basket_fullpermission"
+        ]
+      }
     },
     {
       "DownstreamPathTemplate": "/api/{everything}",
@@ -83,10 +89,12 @@
         "Delete"
       ],
       "UpstreamScheme": "http",
-        "AuthenticationOptions": {
-            "AuthenticationProviderKey": "GatewayAuthenticationScheme",
-            "AllowedScopes": ["discount_fullpermission"]
-        }
+      "DelegatingHandlers": [
+        "TokenExchangeDelegateHandler"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "GatewayAuthenticationScheme"
+      }
     },
     {
       "DownstreamPathTemplate": "/api/{everything}",
@@ -105,10 +113,12 @@
         "Delete"
       ],
       "UpstreamScheme": "http",
-        "AuthenticationOptions": {
-            "AuthenticationProviderKey": "GatewayAuthenticationScheme",
-            "AllowedScopes": ["order_fullpermission"]
-        }
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "GatewayAuthenticationScheme",
+        "AllowedScopes": [
+          "order_fullpermission"
+        ]
+      }
     },
     {
       "DownstreamPathTemplate": "/api/{everything}",
@@ -127,10 +137,12 @@
         "Delete"
       ],
       "UpstreamScheme": "http",
-        "AuthenticationOptions": {
-            "AuthenticationProviderKey": "GatewayAuthenticationScheme",
-            "AllowedScopes": ["payment_fullpermission"]
-        }
+      "DelegatingHandlers": [
+        "TokenExchangeDelegateHandler"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "GatewayAuthenticationScheme"
+      }
     }
   ],
   "GlobalConfiguration": {

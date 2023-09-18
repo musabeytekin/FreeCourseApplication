@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  catalogdb:
+    image: mongo
+
+  basketdb:
+    image: redis
+  
+  discount:
+    image: postgres
+  
+  identitydb:
+    image: mcr.microsoft.com/azure-sql-edge
+
+  orderdb:
+    image: mcr.microsoft.com/azure-sql-edge
+  
+  rabbitmq:
+    image: rabbitmq:3.12.4-management
+
+volumes:
+  catalogdbdata:
+  basketdbdata:
+  discountdbdata:
+  identitydbdata:
+  orderdbdata:

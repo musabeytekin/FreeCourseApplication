@@ -30,10 +30,10 @@ public class BasketService : IBasketService
         {
             return null;
         }
+
         var basketViewModel = await response.Content.ReadFromJsonAsync<Response<BasketViewModel>>();
 
         return basketViewModel.Data;
-
     }
 
     public async Task<bool> Delete()
@@ -49,11 +49,10 @@ public class BasketService : IBasketService
 
         if (basket is not null)
         {
-            if (basket.BasketItems.Any(basketItem => basketItem.CourseId != basketItemViewModel.CourseId))
+            if (!basket.BasketItems.Any(x => x.CourseId == basketItemViewModel.CourseId))
             {
                 basket.BasketItems.Add(basketItemViewModel);
             }
-          
         }
         else
         {
@@ -89,7 +88,6 @@ public class BasketService : IBasketService
         }
 
         return await SaveOrUpdate(basket);
-
     }
 
     public async Task<bool> ApplyDiscount(string discountCode)
@@ -101,17 +99,16 @@ public class BasketService : IBasketService
             return false;
 
         var discount = await _discountService.GetDiscount(discountCode);
-        
+
         if (discount is null)
             return false;
-        
+
         basket.ApplyDiscount(discount.Code, discount.Rate);
-      
+
 
         await SaveOrUpdate(basket);
 
         return true;
-
     }
 
     public async Task<bool> CancelApplyDiscount()

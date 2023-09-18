@@ -62,6 +62,19 @@ namespace FreeCourse.IdentityServer
                         IdentityServerConstants.LocalApi.ScopeName
                     }
                 },
+                new Client
+                {
+                    ClientName = "Token Exchange Client",
+                    ClientId = "TokenExchangeClient",
+                    ClientSecrets = { new Secret("secret".Sha256()) },
+                    AllowedGrantTypes = new[] { "urn:ietf:params:oauth:grant-type:token-exchange" },
+                    AllowedScopes =
+                    {
+                        "discount_fullpermission",
+                        "payment_fullpermission",
+                        IdentityServerConstants.StandardScopes.OpenId,
+                    }
+                },
 
                 new Client
                 {
@@ -73,9 +86,7 @@ namespace FreeCourse.IdentityServer
                     AllowedScopes =
                     {
                         "basket_fullpermission",
-                        "discount_fullpermission",
                         "order_fullpermission",
-                        "payment_fullpermission",
                         "catalog_fullpermission",
                         "photo_stock_fullpermission",
                         "gateway_fullpermission",

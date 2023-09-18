@@ -6,13 +6,13 @@ EXPOSE 80
 
 COPY Shared/FreeCourse.Shared/*.csproj Shared/FreeCourse.Shared/
 
-COPY Services/Catalog/FreeCourse.Services.Catalog/*.csproj Services/Catalog/FreeCourse.Services.Catalog/
+COPY IdentityServer/FreeCourse.IdentityServer/*.csproj IdentityServer/FreeCourse.IdentityServer/
 
-RUN dotnet restore Services/Catalog/FreeCourse.Services.Catalog/*.csproj
+RUN dotnet restore IdentityServer/FreeCourse.IdentityServer/*.csproj
 
 COPY . .
 
-RUN dotnet publish Services/Catalog/FreeCourse.Services.Catalog/*.csproj -c Release -o out
+RUN dotnet publish IdentityServer/FreeCourse.IdentityServer/*.csproj -c Release -o out
 
 FROM microsoft.com/dotnet/aspnet:7.0-alpine as runtime
 

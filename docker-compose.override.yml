@@ -57,4 +57,20 @@ services:
     ports:
       - "15672:15672"
       - "5672:5672"
-    
+
+
+  catalog.api:
+    image: catalog_api_image
+    container_name: catalog.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=DEVELOPMENT
+      - RabbitMQUrl=rabbitmq
+      - IdentityServerUrl=http://identityserver.api
+      - DatabaseSettings:ConnectionString=mongodb://catalogdb:27017
+    ports:
+      - "5011:80"
+    depends_on:
+      - catalogdb
+      - rabbitmq
+      - identityserver.api
+

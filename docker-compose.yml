@@ -1,1 +1,65 @@
-DockerCompose/docker-compose.yml
+version: "3.8"
+services:
+  catalogdb:
+    image: mongo
+  basketdb:
+    image: redis
+  discountdb:
+    image: postgres
+  identitydb:
+    image: mcr.microsoft.com/azure-sql-edge:latest
+  orderdb:
+    image: mcr.microsoft.com/azure-sql-edge:latest
+  rabbitmq:
+    image: rabbitmq:3.12.4-management
+  catalog.api:
+    image: catalog_api
+    build:
+      context: .
+      dockerfile: Services/Catalog/FreeCourse.Services.Catalog/Dockerfile
+  identityserver.api:
+    image: identityserver_api
+    build:
+      context: .
+      dockerfile: IdentityServer/FreeCourse.IdentityServer/Dockerfile
+  basket.api:
+    image: basket_api
+    build:
+      context: .
+      dockerfile: Services/Basket/FreeCourse.Services.Basket/Dockerfile
+  photostock.api:
+    image: photostock_api
+    build:
+      context: .
+      dockerfile: Services/PhotoStock/FreeCourse.Services.PhotoStock/Dockerfile
+  discount.api:
+    image: discount_api
+    build:
+      context: .
+      dockerfile: Services/Discount/FreeCourse.Services.Discount/Dockerfile
+  payment.api:
+    image: payment_api
+    build:
+      context: .
+      dockerfile: Services/FakePayment/FreeCourse.Services.FakePayment/Dockerfile
+  order.api:
+    image: order_api
+    build:
+      context: .
+      dockerfile: Services/Order/FreeCourse.Services.Order.API/Dockerfile
+  gateway.api:
+    image: gateway_api
+    build:
+      context: .
+      dockerfile: Gateways/FreeCourse.Gateway/Dockerfile
+  aspnetcoremvc.web:
+    image: aspnetcoremvc.web
+    build:
+      context: .
+      dockerfile: Web/WebMVC/FreeCourse.Web/Dockerfile
+
+volumes:
+  catalogdbdata:
+  discountdata:
+  identitydbdata:
+  orderdbdata:

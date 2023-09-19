@@ -1,4 +1,4 @@
-FROM microsoft.com/dotnet/sdk:7.0-alpine as build
+FROM mcr.microsoft.com/dotnet/sdk:7.0-alpine as build
 
 WORKDIR /app
 
@@ -14,7 +14,7 @@ COPY . .
 
 RUN dotnet publish Services/Catalog/FreeCourse.Services.Catalog/*.csproj -c Release -o out
 
-FROM microsoft.com/dotnet/aspnet:7.0-alpine as runtime
+FROM mcr.microsoft.com/dotnet/aspnet:7.0-alpine as runtime
 
 WORKDIR /app
 

@@ -128,7 +128,10 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - IdentityServerUrl=http://identityserver.api
       - RabbitMQUrl=rabbitmq
-      - "ConnectionStrings:DefaultConnection=Server=orderdb,1433;Database=OrderDb; User=sa; Password=Password12*"
+      - "ConnectionStrings:DefaultConnection=Server=orderdb,1433;Database=OrderDb; User=sa; Password=Password12*; TrustServerCertificate=True;"
+      - DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false 
+      - LC_ALL=en_US.UTF-8
+      - LANG=en_US.UTF-8 
     ports:
       - "5015:80"
     depends_on:

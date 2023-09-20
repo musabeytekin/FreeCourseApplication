@@ -15,9 +15,7 @@ This project is a Course Trading Application built using AspNet Core technologie
 
 - **Docker Support:** The project can be easily deployed and services can be brought up using Docker.
 
-## Project Overview
 
-This project aimed to deepen my understanding of microservices architecture. During its development, I encountered various challenges and intricacies, which I resolved through meticulous debugging and extensive research. It's important to note that the project may still contain minor issues and is not production-ready at this stage.
 
 
 
